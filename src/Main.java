@@ -82,15 +82,19 @@ class func implements Runnable{
         BufferedWriter w = new BufferedWriter(new FileWriter("./Sample.txt"));
         for (Products p :products){
             w.write(p.toString());
+            w.newLine();
         }
+        w.close(); // Ensure data is written
         BufferedWriter w4 = new BufferedWriter(new FileWriter("./Sample2.txt"));
         customer.values().forEach(customer1 -> {
             try {
                 w4.write(customer1.toString());
+                w4.newLine();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
+        w4.close(); // Ensure data is written
     }
     @Override
     public void run(){
@@ -136,7 +140,7 @@ public class Main {
         // Print to test
         Trnx Trnx = new Trnx(f3.products,f3.customer);
         // Sample transaction (if your Trnx class handles payment etc.)
-        Trnx.buy(1, 1);
+        Trnx.buy(1, 2);
         Trnx.buy(2, 1);
         ReportGenerator r= new ReportGenerator(f3.products,f3.customer);
         r.generate();

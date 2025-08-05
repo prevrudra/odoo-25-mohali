@@ -9,12 +9,12 @@ public class Trnx {
         this.receivedList=list;
         this.receivedCustomer=idk;
     }
-    public void buy(int pId,int cId) throws IOException {
+    public void buy(int pId, int cId) throws IOException {
         for(Products p: receivedList){
             if(pId == p.getId()){
                 p.stock=(p.stock-1);
                 Customer c = receivedCustomer.get(cId);
-                c.products.put(p.price,p.name);
+                c.products.put(p.name,p.price);
                 BufferedWriter w = new BufferedWriter(new FileWriter("tx.txt"));
                 w.write(p.price+" "+c.name+" Purchased Successfully");
                 System.out.println("Product Purchased Successfully");
